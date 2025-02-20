@@ -14,8 +14,8 @@ Esta es una **aplicación web** desarrollada en **Laravel** que permite realizar
 
 ### 1. **Clonar el Repositorio:**
 ```bash
-git clone https://github.com/tuusuario/gestion-carros.git
-cd gestion-carros
+git clone https://github.com/yilveru/ml-laravel-carros.git
+cd ml-laravel-carros
 ```
 
 ### 2. **Instalar Dependencias:**
