@@ -40,9 +40,6 @@ class CarroController extends Controller
         return view('carros.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
      /**
      * Store a newly created car in storage
      *
@@ -85,7 +82,34 @@ class CarroController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display specified car
+     *
+     * @OA\Get(
+     *     path="/api/cars/{id}",
+     *     tags={"Cars"},
+     *     summary="Display one car",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID del carro",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Show car",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="integer", example=1),
+     *             @OA\Property(property="brand", type="string", example="Toyota"),
+     *             @OA\Property(property="model", type="string", example="Corolla"),
+     *             @OA\Property(property="year", type="integer", example=2022),
+     *             @OA\Property(property="color", type="string", example="black"),
+     *             @OA\Property(property="price", type="number", format="float", example=15000.00)
+     *         )
+     *     ),
+     *     @OA\Response(response=404, description="Car not found")
+     * )
      */
     public function show(Request $request, string $id)
     {
@@ -108,7 +132,34 @@ class CarroController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update specific car in storage
+     *
+     * @OA\Put(
+     *     path="/api/cars/{id}",
+     *     tags={"Cars"},
+     *     summary="Update an existing car",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the car to update",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"brand","model","year","color","price"},
+     *             @OA\Property(property="brand", type="string", example="Toyota"),
+     *             @OA\Property(property="model", type="string", example="Corolla"),
+     *             @OA\Property(property="year", type="integer", example=2022),
+     *             @OA\Property(property="color", type="string", example="black"),
+     *             @OA\Property(property="price", type="number", format="float", example=15000.00)
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="Updated successfully"),
+     *     @OA\Response(response="400", description="Invalid data"),
+     *     @OA\Response(response="404", description="Car not found")
+     * )
      */
     public function update(Request $request, string $id)
     {
@@ -131,7 +182,22 @@ class CarroController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified car from storage.
+     *
+     * @OA\Delete(
+     *     path="/api/cars/{id}",
+     *     tags={"Cars"},
+     *     summary="Delete specific car",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the car to delete",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="204", description="Deleted successfully"),
+     *     @OA\Response(response="404", description="Car not found")
+     * )
      */
     public function destroy(Request $request, string $id)
     {

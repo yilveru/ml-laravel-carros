@@ -74,6 +74,166 @@
                     }
                 }
             }
+        },
+        "/api/cars/{id}": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Display one car",
+                "description": "Display specified car",
+                "operationId": "8e262b40a50feb8c579de560d40bc0ec",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del carro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show car",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "brand": {
+                                            "type": "string",
+                                            "example": "Toyota"
+                                        },
+                                        "model": {
+                                            "type": "string",
+                                            "example": "Corolla"
+                                        },
+                                        "year": {
+                                            "type": "integer",
+                                            "example": 2022
+                                        },
+                                        "color": {
+                                            "type": "string",
+                                            "example": "black"
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 15000
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Update an existing car",
+                "description": "Update specific car in storage",
+                "operationId": "373924d4f9511ccfca4c22c7d2184dfd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the car to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "brand",
+                                    "model",
+                                    "year",
+                                    "color",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "Toyota"
+                                    },
+                                    "model": {
+                                        "type": "string",
+                                        "example": "Corolla"
+                                    },
+                                    "year": {
+                                        "type": "integer",
+                                        "example": 2022
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "example": "black"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    },
+                    "400": {
+                        "description": "Invalid data"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Delete specific car",
+                "description": "Remove the specified car from storage.",
+                "operationId": "9902b3de24a8875d41d938fc1bb08286",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the car to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted successfully"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            }
         }
     },
     "tags": [
